@@ -15,7 +15,7 @@ It is something similar to the AngularJS Quick Start but does the entire build w
 
 ```bash
 git clone https://github.com/mprinc/angular2-material-seed.git
-cd angular2-seed
+cd angular2-material-seed
 npm install       # or `npm run reinstall` if you get an error
 npm start         # start with --env dev
 npm run docs      # api document for app

@@ -14,7 +14,7 @@ It is something similar to the AngularJS Quick Start but does the entire build w
 **Note** that this seed project requires node v4.x.x or higher and npm 2.14.7.
 
 ```bash
-git clone https://github.com/mgechev/angular2-seed.git
+git clone https://github.com/mprinc/angular2-material-seed.git
 cd angular2-seed
 npm install       # or `npm run reinstall` if you get an error
 npm start         # start with --env dev

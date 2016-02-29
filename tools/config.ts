@@ -11,9 +11,9 @@ const ENVIRONMENTS = {
   PRODUCTION: 'prod'
 };
 
-// export const SUB_PROJECT_NAME = argv['sub-project'] || 'BUTTONS';
+export const SUB_PROJECT_NAME = argv['sub-project'] || 'BUTTONS';
 // export const SUB_PROJECT_NAME = argv['sub-project'] || 'NO_MATERIAL';
-export const SUB_PROJECT_NAME = argv['sub-project'] || 'SCIENTISTS_MATERIAL';
+// export const SUB_PROJECT_NAME = argv['sub-project'] || 'SCIENTISTS_MATERIAL';
 
 const SUB_PROJECTS = {
   SCIENTISTS_MATERIAL: {
@@ -117,7 +117,7 @@ const SUB_PROJECTS_FILES = {
   },
   BUTTONS: {
       APP_ASSETS : [
-          { src: 'node_modules/ng2-material/dist/MaterialIcons-Regular.*', asset: true, dest: FONTS_DEST }
+          { src: 'node_modules/ng2-material/dist/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST }
       ],
       DEV_NPM_DEPENDENCIES: [
           { src: 'node_modules/ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },
@@ -130,7 +130,7 @@ const SUB_PROJECTS_FILES = {
   },
   SCIENTISTS_MATERIAL: {
       APP_ASSETS : [
-          { src: 'node_modules/ng2-material/dist/MaterialIcons-Regular.*', asset: true, dest: FONTS_DEST }
+          { src: 'node_modules/ng2-material/dist/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST }
       ],
       DEV_NPM_DEPENDENCIES: [
           { src: 'node_modules/ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },

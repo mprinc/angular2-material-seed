@@ -31,7 +31,10 @@ node_modules
 #IDE configuration files
 .idea
 .vscode
+.editorconfig
 
+
+typings/
 dist
 dev
 docs

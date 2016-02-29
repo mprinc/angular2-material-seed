@@ -2,18 +2,22 @@ import {join} from 'path';
 import {APP_SRC, APP_DEST} from '../config';
 import {templateLocals, tsProjectFn} from '../utils';
 
+// compiles all ts files (except tests/template ones) and type definitions,
+// replace templates in them and adds sourcemaps and copies into APP_DEST
 export = function buildJSDev(gulp, plugins) {
-  let tsProject = tsProjectFn(plugins);
   return function () {
+      // creates a TypeScript project from the 'tsconfig.json' file
+    let tsProject = tsProjectFn(plugins);
+    // src files are all ts files (except tests/template ones) and type definitions
     let src = [
-                join(APP_SRC, '**/*.ts'),
-                '!' + join(APP_SRC, '**/*_spec.ts')
-              ];
-
+      'typings/browser.d.ts',
+      'tools/manual_typings/**/*.d.ts',
+      join(APP_SRC, '**/*.ts'),
+      '!' + join(APP_SRC, '**/*.spec.ts'),
+      '!' + join(APP_SRC, '**/*.e2e.ts')
+    ];
     let result = gulp.src(src)
       .pipe(plugins.plumber())
-      // Won't be required for non-production build after the change
-      .pipe(plugins.inlineNg2Template({ base: APP_SRC }))
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.typescript(tsProject));
 

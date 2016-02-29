@@ -16,8 +16,8 @@ const ENVIRONMENTS = {
 export const SUB_PROJECT_NAME = argv['sub-project'] || 'SCIENTISTS_MATERIAL';
 
 const SUB_PROJECTS = {
-    SCIENTISTS_MATERIAL: {
-        BOOTSTRAP_MODULE: 'index',
+  SCIENTISTS_MATERIAL: {
+        BOOTSTRAP_MODULE: 'bootstrap',
         BOOTSTRAP_MODULE_HOT_LOADER: 'hot_loader_index',
         SELECTOR: 'sd-app',
         APP_SRC: 'src/scientists_material',
@@ -83,6 +83,7 @@ export const PROD_DEST            = `${DIST_DIR}/prod`;
 export const TMP_DIR              = `${DIST_DIR}/tmp`;
 export const APP_DEST             = `${DIST_DIR}/${ENV}`;
 export const CSS_DEST             = `${APP_DEST}/css`;
+export const FONTS_DEST           = `${APP_DEST}/fonts`;
 export const JS_DEST              = `${APP_DEST}/js`;
 export const APP_ROOT             = ENV === 'dev' ? `${APP_BASE}${APP_DEST}/` : `${APP_BASE}`;
 export const VERSION              = appVersion();
@@ -99,6 +100,7 @@ export const NG2LINT_RULES        = customRules();
 interface IDependency {
   src: string;
   inject: string | boolean;
+  asset?: boolean; // if set to true it will be copied to final destination
   dest?: string;
 }
 
@@ -115,10 +117,24 @@ const SUB_PROJECTS_FILES = {
   },
   BUTTONS: {
       APP_ASSETS : [
+          { src: 'node_modules/ng2-material/dist/MaterialIcons-Regular.*', asset: true, dest: FONTS_DEST }
       ],
       DEV_NPM_DEPENDENCIES: [
-          { src: 'ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },
-          { src: 'ng2-material/dist/font.css', inject: true, dest: CSS_DEST }
+          { src: 'node_modules/ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },
+          { src: 'node_modules/ng2-material/dist/font.css', inject: true, dest: CSS_DEST }
+      ],
+      PROD_NPM_DEPENDENCIES: [
+          { src: 'node_modules/ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },
+          { src: 'node_modules/ng2-material/dist/font.css', inject: true, dest: CSS_DEST }
+      ]
+  },
+  SCIENTISTS_MATERIAL: {
+      APP_ASSETS : [
+          { src: 'node_modules/ng2-material/dist/MaterialIcons-Regular.*', asset: true, dest: FONTS_DEST }
+      ],
+      DEV_NPM_DEPENDENCIES: [
+          { src: 'node_modules/ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },
+          { src: 'node_modules/ng2-material/dist/font.css', inject: true, dest: CSS_DEST }
       ],
       PROD_NPM_DEPENDENCIES: [
           { src: 'node_modules/ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },

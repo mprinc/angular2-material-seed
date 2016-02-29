@@ -12,9 +12,9 @@
 </head>
 <body>
 
-    <button-basic-usage>
-        <h2>Loading button examples ...</h2>
-    </button-basic-usage>
+  <app>
+      <h2>Loading Scientists (with material) Angular2 example ...</h2>
+  </app>
 
   <script>
   // function.name (all IE)
@@ -54,11 +54,11 @@
 
   <% if (ENV === 'dev') { %>
   <script>
-  System.import('<%= BOOTSTRAP_MODULE %>')
-    .catch(function (e) {
-      console.error(e,
-        'Report this error at https://github.com/mprinc/angular2-material-seed');
-    });
+    System.import('<%= BOOTSTRAP_MODULE %>')
+      .catch(function (e) {
+        console.error(e,
+          'Report this error at https://github.com/mprinc/angular2-material-seed');
+      });
   </script>
   <% } %>
 

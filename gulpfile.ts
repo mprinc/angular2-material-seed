@@ -16,6 +16,7 @@ gulp.task('serve.coverage', task('serve.coverage'));
 gulp.task('build.dev', done =>
   runSequence('clean.prod', // cleans prod (folder, ...)
               'tslint', // ts linting
+              'build.css', // compiles CSS files -> APP_DEST
               'build.assets.dev',   // asset files (not *.ts) from APP_SRC -> APP_DEST
                                     // dependencies assets -> d.dest
               'build.js.dev', // compiles ts files, replace templates and adds sourcemaps -> APP_DEST
@@ -34,6 +35,7 @@ gulp.task('build.dev.watch', done =>
 gulp.task('build.e2e', done =>
   runSequence('clean.dev',
               'tslint',
+              'build.css', // compiles CSS files -> APP_DEST
               'build.assets.dev',
               'build.js.e2e',
               'build.index.dev',
@@ -44,6 +46,7 @@ gulp.task('build.e2e', done =>
 gulp.task('build.prod', done =>
   runSequence('clean.prod', // cleans prod (folder, ...)
               'tslint', // ts linting
+              'build.css', // compiles CSS files -> APP_DEST
               'build.assets.prod',  // copies set of asset files to APP_DEST
                                     // dependencies assets -> d.dest
               'build.html_css.prod',    // project css and html (templates) -> TMP_DIR,
@@ -60,6 +63,7 @@ gulp.task('build.prod', done =>
 gulp.task('build.test', done =>
   runSequence('clean.dev',
               'tslint',
+              'build.css', // compiles CSS files -> APP_DEST
               'build.assets.dev',
               'build.js.test',
               'build.index.dev',

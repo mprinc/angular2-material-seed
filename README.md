@@ -7,6 +7,27 @@
 [![Dependency Status](https://david-dm.org/mgechev/angular2-seed.svg)](https://david-dm.org/mgechev/angular2-seed)
 [![devDependency Status](https://david-dm.org/mgechev/angular2-seed/dev-status.svg)](https://david-dm.org/mgechev/angular2-seed#info=devDependencies)
 
+# Angular2-material-seed (Documentation)
+
+**NOTE**: This is a fork of the work of other great guys (please read in further chapters). It has few additional extensions
+
++ **Documentation** of compilation and building process (both prod and dev) and all tasks. It is both for novice and more experienced guys
++ Support for **multiple sub-projects** that can be chosen among in ```config.ts``` file, currently it supports
+    + original Angular2-seed example with the list of computer scientists
+    + ng2-material version of the same project
+    + plain and simple ng2-material example from angular-materials (simple single page ng2-material project with list of buttons)
++ **Updated dependencies** to the currently newest ones (Angular2, ng2-material, etc)
++ Build support (extended ```tools/tasks/build.assets.dev.ts```, ```tools/tasks/build.assets.prod.ts```) for adding **asset dependencies** in the ```config.ts``` file. This helps to copy to project external dependencies, like ng2-material fonts.
++ **SASS** support
+
+# Angular2-material (Documentation)
+
+**NOTE: This project is fork of the project [angular2-seed](https://mgechev.github.io/angular2-seed/), but then it is manualy patched with [Justin DuJardin](https://github.com/justindujardin)'s [justindujardin/angular2-seed](https://github.com/justindujardin/angular2-seed) where he basically integrated his [ng2-material](https://github.com/justindujardin/ng2-material).**
+
+# Angular2-seed (Documentation)
+
+**NOTE: The following text is comming from [angular2-seed](https://mgechev.github.io/angular2-seed/) that this project is forked from and it is kept here as a valuable source of knowledge and practice.**
+
 A seed project for Angular 2 apps.
 
 It is something similar to the Angular Quick Start but does the entire build with gulp.

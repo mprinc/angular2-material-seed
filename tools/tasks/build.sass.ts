@@ -22,11 +22,11 @@ export = function buildCss(gulp, plugins) {
   return function () {
     // src files are all ts files (except tests/template ones) and type definitions
     let src = [
-      join(APP_SRC, '**/*.scss')
+      join(APP_SRC, '**/sass/*.scss')
     ];
     return gulp.src(src)
       .pipe(plugins.plumber(plumberErrorHandler))
-      .pipe(plugins.sass().on('error', plugins.sass.logError))
+      .pipe(plugins.sass())
       .pipe(gulp.dest(APP_SRC));
   };
 };

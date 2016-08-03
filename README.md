@@ -7,6 +7,86 @@
 [![Dependency Status](https://david-dm.org/mgechev/angular2-seed.svg)](https://david-dm.org/mgechev/angular2-seed)
 [![devDependency Status](https://david-dm.org/mgechev/angular2-seed/dev-status.svg)](https://david-dm.org/mgechev/angular2-seed#info=devDependencies)
 
+# Building description (Documentation)
+
+## Development
+
+For additional info about extending build process, please read:
+
++ [Add custom Gulp task](https://github.com/mgechev/angular2-seed/wiki/Add-custom-Gulp-task)
++ [Add an external styles](https://github.com/mgechev/angular2-seed/wiki/Add-an-external-styles)
++ [Add external dependency](https://github.com/mgechev/angular2-seed/wiki/Add-external-dependency)
++ [Add external fonts](https://github.com/mgechev/angular2-seed/wiki/Add-external-fonts)
+### Building Order
++ **build.dev** - builds dev version
+    + **clean.prod** - cleans prod (folder, ...)
+    + **tslint** - ts linting
+    + **build.compass** - compiles COMPASS files -> APP_DEST
+    + **build.assets.dev** - copies asset files (not *.ts) from APP_SRC -> APP_DEST, and dependencies assets -> d.dest
+    + **build.js.dev** - compiles ts files, replace templates and adds sourcemaps -> APP_DEST
+    + **build.index.dev** - inject all dependencies under coresponding placeholders
++ **server.start** - starts
++ **watch.serve** - watch on the project changes
+    + if any file in APP_SRC is changed it runs 'build.dev' again
+
+#### Server
+
+Afet the building process is finished server will start at the ```config.ts:PORT```. In order to change paths that will be matched and transformed on HTTP requests, check at:  ```tools/utils/code_change_tools.ts:runServer:routes```
+
+### Assets
++ all files from the app source folder (config.ts:APP_SRC) are copied to the dev folder (config.ts:APP_DEST)  at the (relatively) same subfolder
++ excluded files are:
+    + *.ts
+
+### ng2 HTML templates and CSS
++ html/css refered inside the ng components are not explicitly treated and embeded
+    + if they do exist in the app src folder (which is expected) then they are treated as assets
+
+### Compass SASS files
++ There are two options how SASS files can be treated (this is unfortunatelly due to wicked behaviour of gulp.compass and might be resolved in the future)
++ **generic**:
+    + compile and deploy all SASS files in their coresponding SASS folders
++ **per-sass folder**:
+    + for each sass folder specify its path and
+    + optionally (destDir) destination folder
+        + if omitted compiled css files will be deployed in the subfolder of the APP_DEST folder
+    + optionally (cssDir) css-deployment subfolder
+        + if omitted compiled css files will be deployed in the parent folder, just outside the sass folder
+
+### Pure (non-compass) SASS files
++
+
+### CSS
++ all css files from dependencies (config.ts) are injected as references in html
++ all css files in the app src folder are treated as assets
+
+### HTML
++ check assets
+
+### JS
++ all js files from dependencies (config.ts) are injected as references in html
++ check assets
+
+## Production
+
+### Assets
++ all files from the app source folder (config.ts:APP_SRC) are copied to the dev folder (config.ts:APP_DEST)  at the (relatively) same subfolder
++ excluded files are:
+    + *.ts, *.js
+    + *.html
+    + *.css
+
+### ng2 HTML templates and CSS
++ html and css files refered inside the ng components are embeded in the js file representing that component
+
+### SASS files
+
+### CSS
++ all css files from dependencies (config.ts) are bundled together and bulde reference is injected in the html
+
+### JS
++ all js files are bundled based on the injection type together and bulde references are injected in html
+
 # Angular2-material-seed (Documentation)
 
 **NOTE**: This is a fork of the work of other great guys (please read in further chapters). It has few additional extensions
@@ -18,7 +98,8 @@
     + plain and simple ng2-material example from angular-materials (simple single page ng2-material project with list of buttons)
 + **Updated dependencies** to the currently newest ones (Angular2, ng2-material, etc)
 + Build support (extended ```tools/tasks/build.assets.dev.ts```, ```tools/tasks/build.assets.prod.ts```) for adding **asset dependencies** in the ```config.ts``` file. This helps to copy to project external dependencies, like ng2-material fonts.
-+ **SASS** support
++ **SASS** support with gulp-notify
++ **COMPASS** support but still not doing great due to the [issue-61](https://github.com/appleboy/gulp-compass/issues/61)
 
 # Angular2-material (Documentation)
 

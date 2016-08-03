@@ -11,9 +11,9 @@ const ENVIRONMENTS = {
   PRODUCTION: 'prod'
 };
 
-export const SUB_PROJECT_NAME = argv['sub-project'] || 'BUTTONS';
+// export const SUB_PROJECT_NAME = argv['sub-project'] || 'BUTTONS';
 // export const SUB_PROJECT_NAME = argv['sub-project'] || 'NO_MATERIAL';
-// export const SUB_PROJECT_NAME = argv['sub-project'] || 'SCIENTISTS_MATERIAL';
+export const SUB_PROJECT_NAME = argv['sub-project'] || 'SCIENTISTS_MATERIAL';
 
 const SUB_PROJECTS = {
   SCIENTISTS_MATERIAL: {
@@ -25,6 +25,12 @@ const SUB_PROJECTS = {
         COMPILATION: {
             INLINE: {
                 USE_RELATIVE_PATHS: false
+            },
+            COMPASS: {
+                // NOTE: !!!if true, this will output css files into sass folder!!!
+                // due to [issue-61](https://github.com/appleboy/gulp-compass/issues/61)
+                GENERIC: false,
+                PATHS: ['components/app', 'components/home']
             }
         }
     },
@@ -49,12 +55,19 @@ const SUB_PROJECTS = {
       COMPILATION: {
           INLINE: {
               USE_RELATIVE_PATHS: true
+          },
+          COMPASS: {
+              // NOTE: !!!if true, this will output css files into sass folder!!!
+              // due to [issue-61](https://github.com/appleboy/gulp-compass/issues/61)
+              GENERIC: false,
+              PATHS: ['templates']
           }
       }
   }
 };
 
 export const SUB_PROJECT = SUB_PROJECTS[SUB_PROJECT_NAME];
+export const COMPASS_CONFIG = SUB_PROJECT.COMPILATION.COMPASS;
 
 export const PORT                 = argv['port']        || 5555;
 export const PROJECT_ROOT         = normalize(join(__dirname, '..'));
